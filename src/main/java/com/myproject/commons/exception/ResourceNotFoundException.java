@@ -5,10 +5,10 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class OctResourceNotFoundException extends OctException{
+public class ResourceNotFoundException extends CustomException {
     private final ApiMessageError apiMessageError;
 
-    public OctResourceNotFoundException(ErrorMessage message, ApiMessageError apiMessageError) {
+    public ResourceNotFoundException(ErrorMessage message, ApiMessageError apiMessageError) {
         super(message);
         this.apiMessageError = apiMessageError;
     }

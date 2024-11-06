@@ -1,6 +1,6 @@
 package com.myproject.controller;
 
-import com.myproject.commons.OctResponse;
+import com.myproject.commons.CustomResponse;
 import com.myproject.dto.user.UserDTO;
 import com.myproject.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/get-leader")
-    public OctResponse<List<UserDTO>> logIn(){
-        return OctResponse.build(userService.getAllLeader());
+    public CustomResponse<List<UserDTO>> logIn(){
+        return CustomResponse.build(userService.getAllLeader());
     }
 }

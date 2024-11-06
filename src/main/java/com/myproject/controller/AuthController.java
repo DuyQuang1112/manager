@@ -1,6 +1,6 @@
 package com.myproject.controller;
 
-import com.myproject.commons.OctResponse;
+import com.myproject.commons.CustomResponse;
 import com.myproject.dto.JwtResponse;
 import com.myproject.dto.user.UserDTO;
 import com.myproject.dto.user.UserLogin;
@@ -19,13 +19,13 @@ public class AuthController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public OctResponse<UserDTO> register(@RequestBody UserDTO userDTO){
-        return OctResponse.build(userService.createUser(userDTO));
+    public CustomResponse<UserDTO> register(@RequestBody UserDTO userDTO){
+        return CustomResponse.build(userService.createUser(userDTO));
     }
 
     @PostMapping("/log-in")
-    public OctResponse<JwtResponse> logIn(@RequestBody UserLogin userLogin){
-        return OctResponse.build(userService.logIn(userLogin));
+    public CustomResponse<JwtResponse> logIn(@RequestBody UserLogin userLogin){
+        return CustomResponse.build(userService.logIn(userLogin));
     }
 
 }

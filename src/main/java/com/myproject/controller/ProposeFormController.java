@@ -1,6 +1,6 @@
 package com.myproject.controller;
 
-import com.myproject.commons.OctResponse;
+import com.myproject.commons.CustomResponse;
 import com.myproject.commons.exception.ErrorMessages;
 import com.myproject.dto.ProposeFormDTO;
 import com.myproject.service.ProposeFormService;
@@ -17,46 +17,46 @@ public class ProposeFormController {
     private final ProposeFormService proposeFormService;
 
     @GetMapping
-    public OctResponse<List<ProposeFormDTO>> getAll(){
-        return OctResponse.build(proposeFormService.getAll());
+    public CustomResponse<List<ProposeFormDTO>> getAll(){
+        return CustomResponse.build(proposeFormService.getAll());
     }
 
     @GetMapping("/{id}")
-    public OctResponse<ProposeFormDTO> getById(@PathVariable("id") Integer id){
-        return OctResponse.build(proposeFormService.getById(id));
+    public CustomResponse<ProposeFormDTO> getById(@PathVariable("id") Integer id){
+        return CustomResponse.build(proposeFormService.getById(id));
     }
 
     @GetMapping("leader-id/{id}")
-    public OctResponse<List<ProposeFormDTO>> getByLeader(@PathVariable("id") Integer LeaderId){
-        return OctResponse.build(proposeFormService.getByLeaderId(LeaderId));
+    public CustomResponse<List<ProposeFormDTO>> getByLeader(@PathVariable("id") Integer LeaderId){
+        return CustomResponse.build(proposeFormService.getByLeaderId(LeaderId));
     }
 
     @PostMapping
-    public OctResponse<ProposeFormDTO> create(@RequestBody ProposeFormDTO proposeFormDTO){
-        return OctResponse.build(proposeFormService.create(proposeFormDTO));
+    public CustomResponse<ProposeFormDTO> create(@RequestBody ProposeFormDTO proposeFormDTO){
+        return CustomResponse.build(proposeFormService.create(proposeFormDTO));
     }
 
     @PutMapping("/manager/{id}")
-    public OctResponse<ProposeFormDTO> updateByManager(@PathVariable("id") Integer id,
-                                                       @RequestBody ProposeFormDTO proposeFormDTO){
-        return OctResponse.build(proposeFormService.updateByManager(id, proposeFormDTO));
+    public CustomResponse<ProposeFormDTO> updateByManager(@PathVariable("id") Integer id,
+                                                          @RequestBody ProposeFormDTO proposeFormDTO){
+        return CustomResponse.build(proposeFormService.updateByManager(id, proposeFormDTO));
     }
 
     @PutMapping("/by-leader/{id}")
-    public OctResponse<ProposeFormDTO> updateByLeader(@PathVariable("id") Integer id,
-                                                      @RequestBody ProposeFormDTO proposeFormDTO){
-        return OctResponse.build(proposeFormService.updateByLeader(id, proposeFormDTO));
+    public CustomResponse<ProposeFormDTO> updateByLeader(@PathVariable("id") Integer id,
+                                                         @RequestBody ProposeFormDTO proposeFormDTO){
+        return CustomResponse.build(proposeFormService.updateByLeader(id, proposeFormDTO));
     }
 
     @PutMapping("/submit/{id}")
-    public OctResponse<ProposeFormDTO> submit(@PathVariable("id") Integer id,
-                                              @RequestBody ProposeFormDTO proposeFormDTO){
-        return OctResponse.build(proposeFormService.submitToLeader(id, proposeFormDTO));
+    public CustomResponse<ProposeFormDTO> submit(@PathVariable("id") Integer id,
+                                                 @RequestBody ProposeFormDTO proposeFormDTO){
+        return CustomResponse.build(proposeFormService.submitToLeader(id, proposeFormDTO));
     }
 
     @DeleteMapping("/{id}")
-    public OctResponse<String> deleteById(@PathVariable("id") Integer id){
+    public CustomResponse<String> deleteById(@PathVariable("id") Integer id){
         proposeFormService.deleteById(id);
-        return OctResponse.build(ErrorMessages.SUCCESS);
+        return CustomResponse.build(ErrorMessages.SUCCESS);
     }
 }

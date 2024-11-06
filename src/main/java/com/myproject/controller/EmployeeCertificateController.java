@@ -1,6 +1,6 @@
 package com.myproject.controller;
 
-import com.myproject.commons.OctResponse;
+import com.myproject.commons.CustomResponse;
 import com.myproject.commons.exception.ErrorMessages;
 import com.myproject.dto.EmployeeCertificateDTO;
 import com.myproject.service.EmployeeCertificateService;
@@ -16,33 +16,33 @@ public class EmployeeCertificateController {
     private final EmployeeCertificateService employeeCertificateService;
 
     @GetMapping("/{id}")
-    public OctResponse<EmployeeCertificateDTO> getById(@PathVariable("id") Integer id) {
+    public CustomResponse<EmployeeCertificateDTO> getById(@PathVariable("id") Integer id) {
         EmployeeCertificateDTO result = employeeCertificateService.getById(id);
-        return OctResponse.build(result);
+        return CustomResponse.build(result);
     }
 
     @GetMapping("/employee-id/{id}")
-    public OctResponse<List<EmployeeCertificateDTO>> getByEmployeeId(@PathVariable("id") Integer id) {
-        return OctResponse.build(employeeCertificateService.getByEmployeeId(id));
+    public CustomResponse<List<EmployeeCertificateDTO>> getByEmployeeId(@PathVariable("id") Integer id) {
+        return CustomResponse.build(employeeCertificateService.getByEmployeeId(id));
     }
 
     @PostMapping
-    public OctResponse<EmployeeCertificateDTO> create(@RequestBody EmployeeCertificateDTO employeeCertificateDTO) {
+    public CustomResponse<EmployeeCertificateDTO> create(@RequestBody EmployeeCertificateDTO employeeCertificateDTO) {
         EmployeeCertificateDTO result = employeeCertificateService.create(employeeCertificateDTO);
-        return OctResponse.build(result);
+        return CustomResponse.build(result);
     }
 
     @PutMapping("/{id}")
-    public OctResponse<EmployeeCertificateDTO> update(
+    public CustomResponse<EmployeeCertificateDTO> update(
             @PathVariable("id")  Integer id,
             @RequestBody EmployeeCertificateDTO employeeCertificateDTO) {
         EmployeeCertificateDTO result = employeeCertificateService.update(id, employeeCertificateDTO);
-        return OctResponse.build(result);
+        return CustomResponse.build(result);
     }
 
     @DeleteMapping("/{id}")
-    public OctResponse<String> delete(@PathVariable("id") int id) {
+    public CustomResponse<String> delete(@PathVariable("id") int id) {
         employeeCertificateService.delete(id);
-        return OctResponse.build(ErrorMessages.SUCCESS);
+        return CustomResponse.build(ErrorMessages.SUCCESS);
     }
 }

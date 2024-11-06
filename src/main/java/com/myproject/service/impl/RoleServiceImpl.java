@@ -2,7 +2,7 @@ package com.myproject.service.impl;
 
 import com.myproject.commons.exception.ApiMessageError;
 import com.myproject.commons.exception.ErrorMessages;
-import com.myproject.commons.exception.OctResourceNotFoundException;
+import com.myproject.commons.exception.ResourceNotFoundException;
 import com.myproject.constant.MessageErrorConst;
 import com.myproject.dto.RoleDTO;
 import com.myproject.service.RoleService;
@@ -30,7 +30,7 @@ public class RoleServiceImpl implements RoleService {
         try {
             return (RoleDTO) query.getSingleResult();
         } catch (NoResultException e) {
-            throw new OctResourceNotFoundException(ErrorMessages.NOT_FOUND, new ApiMessageError(MessageErrorConst.ROLE_NOT_FOUND));
+            throw new ResourceNotFoundException(ErrorMessages.NOT_FOUND, new ApiMessageError(MessageErrorConst.ROLE_NOT_FOUND));
         }
 
     }
@@ -44,7 +44,7 @@ public class RoleServiceImpl implements RoleService {
         try {
             return (RoleDTO) query.getSingleResult();
         } catch (NoResultException e) {
-            throw new OctResourceNotFoundException(ErrorMessages.NOT_FOUND, new ApiMessageError(MessageErrorConst.ROLE_NOT_FOUND));
+            throw new ResourceNotFoundException(ErrorMessages.NOT_FOUND, new ApiMessageError(MessageErrorConst.ROLE_NOT_FOUND));
         }
     }
 }

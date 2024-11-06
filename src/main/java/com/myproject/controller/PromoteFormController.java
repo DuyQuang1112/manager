@@ -1,6 +1,6 @@
 package com.myproject.controller;
 
-import com.myproject.commons.OctResponse;
+import com.myproject.commons.CustomResponse;
 import com.myproject.commons.exception.ErrorMessages;
 import com.myproject.dto.PromoteFormDTO;
 import com.myproject.service.PromoteFormService;
@@ -16,46 +16,46 @@ public class PromoteFormController {
     private final PromoteFormService promoteFormService;
 
     @GetMapping
-    public OctResponse<List<PromoteFormDTO>> getAll(){
-        return OctResponse.build(promoteFormService.getAll());
+    public CustomResponse<List<PromoteFormDTO>> getAll(){
+        return CustomResponse.build(promoteFormService.getAll());
     }
 
     @GetMapping("/{id}")
-    public OctResponse<PromoteFormDTO> getById(@PathVariable("id") Integer id){
-        return OctResponse.build(promoteFormService.getById(id));
+    public CustomResponse<PromoteFormDTO> getById(@PathVariable("id") Integer id){
+        return CustomResponse.build(promoteFormService.getById(id));
     }
 
     @GetMapping("leader-id/{id}")
-    public OctResponse<List<PromoteFormDTO>> getByLeader(@PathVariable("id") Integer LeaderId){
-        return OctResponse.build(promoteFormService.getByLeaderId(LeaderId));
+    public CustomResponse<List<PromoteFormDTO>> getByLeader(@PathVariable("id") Integer LeaderId){
+        return CustomResponse.build(promoteFormService.getByLeaderId(LeaderId));
     }
 
     @PostMapping
-    public OctResponse<PromoteFormDTO> create(@RequestBody PromoteFormDTO promoteFormDTO){
-        return OctResponse.build(promoteFormService.create(promoteFormDTO));
+    public CustomResponse<PromoteFormDTO> create(@RequestBody PromoteFormDTO promoteFormDTO){
+        return CustomResponse.build(promoteFormService.create(promoteFormDTO));
     }
 
     @PutMapping("/manager/{id}")
-    public OctResponse<PromoteFormDTO> updateByManager(@PathVariable("id") Integer id,
-                                                       @RequestBody PromoteFormDTO promoteFormDTO){
-        return OctResponse.build(promoteFormService.updateByManager(id, promoteFormDTO));
+    public CustomResponse<PromoteFormDTO> updateByManager(@PathVariable("id") Integer id,
+                                                          @RequestBody PromoteFormDTO promoteFormDTO){
+        return CustomResponse.build(promoteFormService.updateByManager(id, promoteFormDTO));
     }
 
     @PutMapping("/by-leader/{id}")
-    public OctResponse<PromoteFormDTO> updateByLeader(@PathVariable("id") Integer id,
-                                                      @RequestBody PromoteFormDTO promoteFormDTO){
-        return OctResponse.build(promoteFormService.updateByLeader(id, promoteFormDTO));
+    public CustomResponse<PromoteFormDTO> updateByLeader(@PathVariable("id") Integer id,
+                                                         @RequestBody PromoteFormDTO promoteFormDTO){
+        return CustomResponse.build(promoteFormService.updateByLeader(id, promoteFormDTO));
     }
 
     @PutMapping("/submit/{id}")
-    public OctResponse<PromoteFormDTO> submit(@PathVariable("id") Integer id,
-                                              @RequestBody PromoteFormDTO promoteFormDTO){
-        return OctResponse.build(promoteFormService.submitToLeader(id, promoteFormDTO));
+    public CustomResponse<PromoteFormDTO> submit(@PathVariable("id") Integer id,
+                                                 @RequestBody PromoteFormDTO promoteFormDTO){
+        return CustomResponse.build(promoteFormService.submitToLeader(id, promoteFormDTO));
     }
 
     @DeleteMapping("/{id}")
-    public OctResponse<String> deleteById(@PathVariable("id") Integer id){
+    public CustomResponse<String> deleteById(@PathVariable("id") Integer id){
         promoteFormService.deleteById(id);
-        return OctResponse.build(ErrorMessages.SUCCESS);
+        return CustomResponse.build(ErrorMessages.SUCCESS);
     }
 }

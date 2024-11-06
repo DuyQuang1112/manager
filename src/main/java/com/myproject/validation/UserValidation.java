@@ -2,7 +2,7 @@ package com.myproject.validation;
 
 import com.myproject.commons.exception.ApiMessageError;
 import com.myproject.commons.exception.ErrorMessages;
-import com.myproject.commons.exception.OctIllegalRequestException;
+import com.myproject.commons.exception.IllegalRequestException;
 import com.myproject.constant.MessageErrorConst;
 import com.myproject.constant.StoredProcedureConst.User;
 import com.myproject.dto.user.UserDTO;
@@ -23,13 +23,13 @@ public class UserValidation {
         commonValidate.checkValidUsername(userDto.getUsername());
         commonValidate.checkValidPassword(userDto.getPassword());
         if(existUsername(userDto.getUsername()) == 1) {
-            throw new OctIllegalRequestException(ErrorMessages.INVALID_VALUE , new ApiMessageError(MessageErrorConst.USERNAME_DUPLICATE));
+            throw new IllegalRequestException(ErrorMessages.INVALID_VALUE , new ApiMessageError(MessageErrorConst.USERNAME_DUPLICATE));
         }
     }
 
     public void validateUserLogin(String username) {
         if(existUsername(username) == 0) {
-            throw new OctIllegalRequestException(ErrorMessages.INVALID_VALUE , new ApiMessageError(MessageErrorConst.USERNAME_NOT_EXIST));
+            throw new IllegalRequestException(ErrorMessages.INVALID_VALUE , new ApiMessageError(MessageErrorConst.USERNAME_NOT_EXIST));
         }
     }
 

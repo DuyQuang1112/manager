@@ -2,7 +2,7 @@ package com.myproject.service.impl;
 
 import com.myproject.commons.exception.ApiMessageError;
 import com.myproject.commons.exception.ErrorMessages;
-import com.myproject.commons.exception.OctIllegalRequestException;
+import com.myproject.commons.exception.IllegalRequestException;
 import com.myproject.constant.StoredProcedureConst.EmployeeInfo;
 import com.myproject.dto.EmployeeInfoDTO;
 import com.myproject.service.EmployeeInfoService;
@@ -49,7 +49,7 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
         if (imageFile != null && !imageFile.isEmpty()) {
             employeeInfoDTO.setImage(Upload.uploadFile(imageFile));
         } else {
-            throw new OctIllegalRequestException(ErrorMessages.BAD_REQUEST, new ApiMessageError("Must contain image"));
+            throw new IllegalRequestException(ErrorMessages.BAD_REQUEST, new ApiMessageError("Must contain image"));
         }
 
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery(EmployeeInfo.CREATE, "EmployeeInfoMapper")

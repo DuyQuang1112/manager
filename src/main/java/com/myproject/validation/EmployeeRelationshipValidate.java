@@ -2,7 +2,7 @@ package com.myproject.validation;
 
 import com.myproject.commons.exception.ApiMessageError;
 import com.myproject.commons.exception.ErrorMessages;
-import com.myproject.commons.exception.OctIllegalRequestException;
+import com.myproject.commons.exception.IllegalRequestException;
 import com.myproject.constant.MessageErrorConst;
 import com.myproject.constant.StoredProcedureConst.EmployeeRelationship;
 import com.myproject.dto.EmployeeRelationshipDTO;
@@ -27,7 +27,7 @@ public class EmployeeRelationshipValidate {
         query.execute();
         Integer isDuplicate = (Integer) query.getOutputParameterValue("is_exist");
         if(isDuplicate == 0){
-            throw new OctIllegalRequestException(ErrorMessages.INVALID_VALUE, new ApiMessageError(MessageErrorConst.ID_NOT_EXIST));
+            throw new IllegalRequestException(ErrorMessages.INVALID_VALUE, new ApiMessageError(MessageErrorConst.ID_NOT_EXIST));
         }
     }
 
@@ -35,7 +35,7 @@ public class EmployeeRelationshipValidate {
         commonValidate.checkValidIdNumber(employeeRelationshipDTO.getIdentificationNumber());
         commonValidate.checkValidDate(employeeRelationshipDTO.getDateOfBirth());
         if (checkIdNumberDuplicate(employeeRelationshipDTO.getIdentificationNumber()) == 1) {
-            throw new OctIllegalRequestException(ErrorMessages.INVALID_VALUE, new ApiMessageError(MessageErrorConst.DUPLICATE_IDENTIFICATION_NUMBER));
+            throw new IllegalRequestException(ErrorMessages.INVALID_VALUE, new ApiMessageError(MessageErrorConst.DUPLICATE_IDENTIFICATION_NUMBER));
         }
     }
 

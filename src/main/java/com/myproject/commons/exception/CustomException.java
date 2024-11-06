@@ -3,16 +3,16 @@ package com.myproject.commons.exception;
 import lombok.Getter;
 
 @Getter
-public class OctException extends RuntimeException{
+public class CustomException extends RuntimeException{
 
     private final ErrorMessage errMsg;
 
-    public OctException(ErrorMessage errMsg) {
+    public CustomException(ErrorMessage errMsg) {
         super();
         this.errMsg = errMsg;
     }
 
-    public OctException() {
+    public CustomException() {
         super();
         errMsg = null;
     }

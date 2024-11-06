@@ -2,7 +2,7 @@ package com.myproject.utils;
 
 import com.myproject.commons.exception.ApiMessageError;
 import com.myproject.commons.exception.ErrorMessages;
-import com.myproject.commons.exception.OctResourceNotFoundException;
+import com.myproject.commons.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,7 +29,7 @@ public class Upload {
             file.transferTo(new File(filePath.toString()));
             return filePath.toString();
         } catch(Exception e){
-            throw new OctResourceNotFoundException(ErrorMessages.BAD_REQUEST, new ApiMessageError("Can not upload image"));
+            throw new ResourceNotFoundException(ErrorMessages.BAD_REQUEST, new ApiMessageError("Can not upload image"));
         }
 
     }

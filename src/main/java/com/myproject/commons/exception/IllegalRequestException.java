@@ -5,10 +5,10 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class OctIllegalRequestException extends  OctException{
+public class IllegalRequestException extends CustomException {
     private final ApiMessageError apiMessageError;
 
-    public OctIllegalRequestException(ErrorMessage message, ApiMessageError apiMessageError) {
+    public IllegalRequestException(ErrorMessage message, ApiMessageError apiMessageError) {
         super(message);
         this.apiMessageError = apiMessageError;
     }

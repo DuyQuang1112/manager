@@ -2,7 +2,7 @@ package com.myproject.service.impl;
 
 import com.myproject.commons.exception.ApiMessageError;
 import com.myproject.commons.exception.ErrorMessages;
-import com.myproject.commons.exception.OctIllegalRequestException;
+import com.myproject.commons.exception.IllegalRequestException;
 import com.myproject.constant.MessageErrorConst;
 import com.myproject.constant.StoredProcedureConst.User;
 import com.myproject.dto.JwtResponse;
@@ -71,7 +71,7 @@ public class UserServiceImpl implements UserService {
             String jwt = jwtTokenProvider.generateToken(userDetails);
             return new JwtResponse(jwt);
         } catch (BadCredentialsException exception) {
-            throw new OctIllegalRequestException(ErrorMessages.LOGIN_FAILED, new ApiMessageError(MessageErrorConst.PASSWORD_INVALID));
+            throw new IllegalRequestException(ErrorMessages.LOGIN_FAILED, new ApiMessageError(MessageErrorConst.PASSWORD_INVALID));
         }
 
     }

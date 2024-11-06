@@ -2,8 +2,8 @@ package com.myproject.validation;
 
 import com.myproject.commons.exception.ApiMessageError;
 import com.myproject.commons.exception.ErrorMessages;
-import com.myproject.commons.exception.OctIllegalRequestException;
-import com.myproject.commons.exception.OctResourceNotFoundException;
+import com.myproject.commons.exception.IllegalRequestException;
+import com.myproject.commons.exception.ResourceNotFoundException;
 import com.myproject.constant.MessageErrorConst;
 import com.myproject.constant.StoredProcedureConst;
 import com.myproject.dto.EmployeeInfoDTO;
@@ -28,7 +28,7 @@ public class EmployeeInfoValidation {
         query.execute();
         Integer isDuplicate = (Integer) query.getOutputParameterValue("is_exist");
         if(isDuplicate == 0){
-            throw new OctResourceNotFoundException(ErrorMessages.NOT_FOUND, new ApiMessageError(MessageErrorConst.ID_NOT_EXIST));
+            throw new ResourceNotFoundException(ErrorMessages.NOT_FOUND, new ApiMessageError(MessageErrorConst.ID_NOT_EXIST));
         }
     }
 
@@ -37,13 +37,13 @@ public class EmployeeInfoValidation {
         commonValidate.checkValidIdNumber(employeeInfoDTO.getIdentificationNumber());
         commonValidate.checkValidDate(employeeInfoDTO.getDateOfBirth());
         if (isEmailDuplicate(employeeInfoDTO.getEmail()) == 1) {
-            throw new OctIllegalRequestException(ErrorMessages.INVALID_VALUE, new ApiMessageError(MessageErrorConst.DUPLICATE_EMAIL));
+            throw new IllegalRequestException(ErrorMessages.INVALID_VALUE, new ApiMessageError(MessageErrorConst.DUPLICATE_EMAIL));
         }
         if (isPhoneDuplicate(employeeInfoDTO.getPhoneNumber()) == 1) {
-            throw new OctIllegalRequestException(ErrorMessages.INVALID_VALUE, new ApiMessageError(MessageErrorConst.DUPLICATE_PHONE_NUMBER));
+            throw new IllegalRequestException(ErrorMessages.INVALID_VALUE, new ApiMessageError(MessageErrorConst.DUPLICATE_PHONE_NUMBER));
         }
         if (isIdNumberDuplicate(employeeInfoDTO.getIdentificationNumber()) == 1) {
-            throw new OctIllegalRequestException(ErrorMessages.INVALID_VALUE, new ApiMessageError(MessageErrorConst.DUPLICATE_IDENTIFICATION_NUMBER));
+            throw new IllegalRequestException(ErrorMessages.INVALID_VALUE, new ApiMessageError(MessageErrorConst.DUPLICATE_IDENTIFICATION_NUMBER));
         }
     }
 

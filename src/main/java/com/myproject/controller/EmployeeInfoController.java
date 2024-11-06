@@ -1,6 +1,6 @@
 package com.myproject.controller;
 
-import com.myproject.commons.OctResponse;
+import com.myproject.commons.CustomResponse;
 import com.myproject.commons.exception.ErrorMessages;
 import com.myproject.dto.EmployeeInfoDTO;
 import com.myproject.service.EmployeeInfoService;
@@ -19,36 +19,36 @@ public class EmployeeInfoController {
     private final EmployeeInfoService employeeService;
 
     @GetMapping
-    public OctResponse<List<EmployeeInfoDTO>> getAll() {
-        return OctResponse.build(employeeService.getAll());
+    public CustomResponse<List<EmployeeInfoDTO>> getAll() {
+        return CustomResponse.build(employeeService.getAll());
     }
 
     @GetMapping("/{id}")
-    public OctResponse<EmployeeInfoDTO> getById(@PathVariable("id") int id) {
-        return OctResponse.build(employeeService.getById(id));
+    public CustomResponse<EmployeeInfoDTO> getById(@PathVariable("id") int id) {
+        return CustomResponse.build(employeeService.getById(id));
     }
 
     @PostMapping(consumes = {"multipart/form-data"})
-    public OctResponse<EmployeeInfoDTO> create(
+    public CustomResponse<EmployeeInfoDTO> create(
             @RequestPart("employeeProfile") @Valid EmployeeInfoDTO employeeInfoDTO,
             @RequestPart(value = "imageFile",required = false) MultipartFile imageFile) {
         EmployeeInfoDTO result = employeeService.create(employeeInfoDTO, imageFile);
-        return OctResponse.build(result);
+        return CustomResponse.build(result);
     }
 
     @PutMapping("/{id}")
-    public OctResponse<EmployeeInfoDTO> update(
+    public CustomResponse<EmployeeInfoDTO> update(
             @PathVariable("id") Integer id,
             @RequestPart("employeeProfile") @Valid EmployeeInfoDTO employeeInfoDTO,
             @RequestPart(value = "imageFile",required = false) MultipartFile imageFile) {
         EmployeeInfoDTO result = employeeService.update(id, employeeInfoDTO, imageFile);
-        return OctResponse.build(result);
+        return CustomResponse.build(result);
     }
 
     @DeleteMapping("/{id}")
-    public OctResponse<String> deleteById(@PathVariable("id") int id) {
+    public CustomResponse<String> deleteById(@PathVariable("id") int id) {
         employeeService.deleteById(id);
-        return OctResponse.build(ErrorMessages.SUCCESS);
+        return CustomResponse.build(ErrorMessages.SUCCESS);
     }
 
 
